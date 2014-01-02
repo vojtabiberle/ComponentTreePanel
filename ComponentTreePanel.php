@@ -30,7 +30,7 @@ class ComponentTreePanel extends CompilerExtension implements IBarPanel {
 	 * Is caching allowed
 	 * @var bool
 	 */
-	public static $cache = TRUE;
+	public static $cache = FALSE;
 
 	/**
 	 * Include dumps in tree
@@ -127,7 +127,7 @@ class ComponentTreePanel extends CompilerExtension implements IBarPanel {
 			return NULL;
 		}
 		$template->wrap = static::$wrap;
-		$template->cache = static::$cache ? Environment::getCache('Debugger.Panels.ComponentTree') : NULL;
+		$template->netteCacheStorage = static::$cache ? Environment::getCache('Debugger.Panels.ComponentTree') : NULL;
 		$template->dumps = static::$dumps;
 		$template->parametersOpen = static::$parametersOpen;
 		$template->presenterOpen = static::$presenterOpen;

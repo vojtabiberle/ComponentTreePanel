@@ -95,17 +95,10 @@
 
 				{if !($object instanceOf \Nette\Forms\Controls\BaseControl || $object instanceOf \Nette\Forms\Form
 					  || $object instanceOf \Nette\Forms\Container)}
-				<?php
+				
 
-					$key = $object->reflection->name . '|' . $object->name . '|' . $presenter->name;
-
-					if ($cache && isset($cache[$key])) {
-						$cached = $cache[$key];
-						echo $cached;
-					}
-					else {
-						ob_start();
-				?>
+				{var $cachekey = $object->reflection->name . '|' . $object->name . '|' . $presenter->name}
+				{cache $cachekey, if => $cache}
 
 					<li>
 						CreateComponent&lt;name&gt; methods
@@ -146,14 +139,8 @@
 						{include #source object => $object}
 					{/if}
 			
-			<?php
-					$content = ob_get_clean();
-					echo $content;
-					if ($cache) {
-						$cache->save($key, $content, array('files'=>array($refl->getFileName())));
-					}
-				}
-			?>
+			{/cache}
+
 
 			{/if} {* /if object instanceOf BaseControl*}
 
