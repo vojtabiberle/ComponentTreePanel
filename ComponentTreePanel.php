@@ -150,7 +150,7 @@ class ComponentTreePanel extends CompilerExtension implements IBarPanel {
 		return ob_get_clean();
 	}
 
-	public function isPersistent(\Nette\ComponentModel\Component $object) {
+	public function isPersistent(\Nette\ComponentModel\IComponent $object) {
 		static $persistentParameters = NULL;
 		if ($persistentParameters === NULL) {
 			$presenter = $object instanceOf \Nette\Application\IPresenter ? $object :$object->lookupPath('Nette\Application\IPresenter', FALSE);
